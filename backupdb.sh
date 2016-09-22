@@ -39,6 +39,6 @@ path_to_backup=$5
 IFS=',' read -r -a arrdb <<< "$databases"
 for database in "${arrdb[@]}"
 do
-	`mysqldump -S $socket -u $userdb -p$password $database > $path_to_backup$datefile-$database.sql`
+	`mysqldump -S $socket -u $userdb -p$password --set-gtid-purged=OFF $database > $path_to_backup$datefile-$database.sql`
 done
 
