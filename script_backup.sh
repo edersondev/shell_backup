@@ -20,7 +20,7 @@ paths=$2
 path_to_backup=$3
 
 # Delete old files with modification time older than 5 days before backup
-find $path_backup -type f -mtime +5 -name '*.gz' -execdir rm -- {} \;
+find $path_to_backup -type f -mtime +5 -name '*.gz' -execdir rm -- {} \;
 
 datefile=`date +%Y%m%d-%H%M`
 

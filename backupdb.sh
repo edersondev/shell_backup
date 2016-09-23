@@ -25,9 +25,6 @@ if [ ! $5 ]; then
 	exit
 fi
 
-# Delete old files with modification time older than 5 days before backup
-find $path_backup -type f -mtime +5 -name '*.sql' -execdir rm -- {} \;
-
 datefile=`date +%Y%m%d-%H%M`
 
 socket=$1
@@ -35,6 +32,9 @@ userdb=$2
 password=$3
 databases=$4
 path_to_backup=$5
+
+# Delete old files with modification time older than 5 days before backup
+find $path_to_backup -type f -mtime +5 -name '*.sql' -execdir rm -- {} \;
 
 IFS=',' read -r -a arrdb <<< "$databases"
 for database in "${arrdb[@]}"
